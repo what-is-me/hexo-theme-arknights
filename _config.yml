@@ -19,11 +19,11 @@ background_image:
   light: /img/bk.jpg # 亮色模式
 
 # 导航栏
-menu:
-  Home: ""
+# menu:
+  # Home: ""
   # About: about/
   # Contact: contact/
-  Archives: archives/
+  # Archives: archives/
 
 # 侧边栏
 aside:
