@@ -14,9 +14,25 @@ function initHeader(str) {
   })
 }
 
+const genNextTitleNum = (title_num, depth) => {
+  const next_title_num = Array.from({ length: depth }, (_, i) => (i < title_num.length ? title_num[i] : 0))
+  next_title_num[depth - 1]++
+  return next_title_num
+}
+
 function initHeader2(str) {
+  let title_num = []
   return str.replaceAll(/<h[1-6] id=".*?"><a href=".*?" class="headerlink" title=".*?"><\/a>.*?<\/h[1-6]>/g, (match) => {
-    return match.replace(/(<h[1-6] id=".*?"><a href=".*?" class="headerlink" title=".*?"><\/a>)(.*?)(<\/h[1-6]>)/, '$1<span class="header-auto-count">$2</span>$3')
+    const parts = match.match(/(<h[1-6] id=".*?"><a href=".*?" class="headerlink" title=".*?"><\/a>)(.*?)<\/h([1-6])>/)
+    const header_level = Number(parts[3])
+    title_num = genNextTitleNum(title_num, header_level)
+    let before_title = ""
+    if (header_level === 1){
+      before_title = `No.${title_num[0]} `
+    }else{
+      before_title = `${title_num.slice(1).join('.')}. `
+    }
+    return `${parts[1]}${before_title}${parts[2]}</h${parts[3]}>`
   })
 }
 
