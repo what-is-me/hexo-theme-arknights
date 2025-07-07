@@ -22,10 +22,11 @@ header.closed
   nav
     if searchConfig !== null
       .navItem#search-header
-        span.navItemTitle
-          input(autocomplete="off" autocorrect="off" autocapitalize="none"
-            placeholder=__('search.blurHolder') spellcheck="false" maxlength="50"
-            type="text" id="search-input")
+        .navBlock
+          span.navItemTitle
+            input(autocomplete="off" autocorrect="off" autocapitalize="none"
+              placeholder=__('search.blurHolder') spellcheck="false" maxlength="50"
+              type="text" id="search-input")
       .navItem#search-holder
       .search-popup(tabindex="0")
         #search-result
